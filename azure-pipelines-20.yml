@@ -2,7 +2,8 @@ trigger:
   - main
 
 pool:
-  name: 'default'
+  name: 'Default'
+  vmImage: 'windows-latest'
 
 steps:
   - task: Maven@4
