@@ -6,21 +6,20 @@
 trigger:
 - main
 
-pool: ajeet
-  vmImage: ubuntu-latest
-
-steps:
-- task: Maven@3
+pool: my personal pc
+- task: Maven@4
   inputs:
+    azureSubscription: 'Azure for Students(8d426e93-4493-4f28-857a-e753f087f115)'
     mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
-    
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+  vmImage: ubuntu-latest
+
     - task: PublishTestResults@2
   inputs:
     testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
